@@ -4,5 +4,11 @@ interface ContactType {
   phone_number: string;
   name: string;
 }
-
-export { ContactType };
+interface AppContextType {
+  state: AppState;
+  dispatch: React.Dispatch<ActionType>;
+}
+interface AppState {}
+interface AppReducerType {}
+type ActionType = { type: "Add_Contact"; payload: {} };
+export { ContactType, AppContextType, AppState, AppReducerType, ActionType };
