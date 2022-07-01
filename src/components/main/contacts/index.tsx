@@ -10,11 +10,11 @@ const Contacts = () => {
   return (
     <section className=" max-w-3xl mx-auto w-full md:w-full flex flex-col gap-y-3">
       <ContactHeader />
-      {contacts.map(({ email, id, name, phone_number }) => {
+      {contacts.map(({ email, id, name, phone_number }, index) => {
         return (
           <Contact
             key={id}
-            id={id}
+            id={index + 1 + ""}
             email={email}
             phone_number={phone_number}
             name={name}

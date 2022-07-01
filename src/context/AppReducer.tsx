@@ -20,7 +20,10 @@ const initialState: AppState = {
 const reducer: Reducer<AppState, ActionType> = (initialState, action) => {
   switch (action.type) {
     case "Add_Contact": {
-      return { ...initialState };
+      return {
+        ...initialState,
+        contacts: [...initialState.contacts, action.payload],
+      };
     }
     default: {
       return { ...initialState };
