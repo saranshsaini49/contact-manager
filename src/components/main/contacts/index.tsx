@@ -14,7 +14,8 @@ const Contacts = () => {
         return (
           <Contact
             key={id}
-            id={index + 1 + ""}
+            id={id}
+            list_number={index + 1 + ""}
             email={email}
             phone_number={phone_number}
             name={name}

@@ -25,6 +25,14 @@ const reducer: Reducer<AppState, ActionType> = (initialState, action) => {
         contacts: [...initialState.contacts, action.payload],
       };
     }
+    case "Delete_Contact": {
+      return {
+        ...initialState,
+        contacts: initialState.contacts.filter(
+          (contact) => contact.id !== action.payload
+        ),
+      };
+    }
     default: {
       return { ...initialState };
     }
