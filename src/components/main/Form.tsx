@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useGLobalContext } from "../../context/AppContext";
 
@@ -8,7 +8,21 @@ const Form = () => {
     email: "",
     phone_number: "",
   });
-  const { dispatch } = useGLobalContext();
+  const { state, dispatch } = useGLobalContext();
+  useEffect(() => {
+    if (state.editFieldId !== "") {
+      const contact = state.contacts.find(
+        (contact) => contact.id === state.editFieldId
+      );
+      if (contact) {
+        setInputs({
+          name: contact.name,
+          email: contact.email,
+          phone_number: contact.phone_number,
+        });
+      }
+    }
+  }, [state.editFieldId]);
 
   const changeInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prevState) => {
@@ -35,15 +49,27 @@ const Form = () => {
           inputs.phone_number.length >= 10 &&
           ValidateEmail(inputs.email)
         ) {
-          dispatch({
-            type: "Add_Contact",
-            payload: {
-              id: uuidv4(),
-              email: inputs.email,
-              name: inputs.name,
-              phone_number: inputs.phone_number,
-            },
-          });
+          if (state.editFieldId !== "") {
+            dispatch({
+              type: "Edit_Contact",
+              payload: {
+                id: uuidv4(),
+                email: inputs.email,
+                name: inputs.name,
+                phone_number: inputs.phone_number,
+              },
+            });
+          } else {
+            dispatch({
+              type: "Add_Contact",
+              payload: {
+                id: uuidv4(),
+                email: inputs.email,
+                name: inputs.name,
+                phone_number: inputs.phone_number,
+              },
+            });
+          }
         } else {
           console.log(inputs.name.length);
           console.log(inputs.phone_number.length);

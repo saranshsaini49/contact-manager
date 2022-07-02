@@ -16,6 +16,7 @@ const initialState: AppState = {
       name: "bunny mechanic",
     },
   ],
+  editFieldId: "",
 };
 const reducer: Reducer<AppState, ActionType> = (initialState, action) => {
   switch (action.type) {
@@ -32,6 +33,9 @@ const reducer: Reducer<AppState, ActionType> = (initialState, action) => {
           (contact) => contact.id !== action.payload
         ),
       };
+    }
+    case "Set_Edit_Field_Id": {
+      return { ...initialState, editFieldId: action.payload };
     }
     default: {
       return { ...initialState };

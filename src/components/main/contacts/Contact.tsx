@@ -18,7 +18,12 @@ const Contact: FC<ContactType> = ({
         <li>{email}</li>
         <li>{phone_number}</li>
         <li className="flex gap-1 ">
-          <button className="bg-blue-600 rounded-sm text-white px-2 py-0.5">
+          <button
+            className="bg-blue-600 rounded-sm text-white px-2 py-0.5"
+            onClick={() => {
+              dispatch({ type: "Set_Edit_Field_Id", payload: id });
+            }}
+          >
             Edit
           </button>
           <button

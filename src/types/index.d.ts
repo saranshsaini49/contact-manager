@@ -11,20 +11,24 @@ interface AppContextType {
 }
 interface AppState {
   contacts: ContactType[];
+  editFieldId: string;
 }
 interface AppReducerType {}
 type ActionType =
   | {
       type: "Add_Contact";
-      payload: {
-        id: string;
-        name: string;
-        email: string;
-        phone_number: string;
-      };
+      payload: ContactType;
     }
   | {
       type: "Delete_Contact";
+      payload: string;
+    }
+  | {
+      type: "Edit_Contact";
+      payload: ContactType;
+    }
+  | {
+      type: "Set_Edit_Field_Id";
       payload: string;
     };
 export { ContactType, AppContextType, AppState, AppReducerType, ActionType };
