@@ -12,7 +12,7 @@ const Contact: FC<ContactType> = ({
   const { dispatch } = useGLobalContext();
   return (
     <article className="flex p-4 pt-1 gap-x-4 border-b-2 ">
-      <p>{list_number}</p>
+      <p>{list_number}.</p>
       <div className="flex flex-col gap-y-1.5 ">
         <p>{name}</p>
         <p>{email}</p>
