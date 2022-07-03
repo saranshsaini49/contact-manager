@@ -53,7 +53,7 @@ const Form = () => {
             dispatch({
               type: "Edit_Contact",
               payload: {
-                id: uuidv4(),
+                id: state.editFieldId,
                 email: inputs.email,
                 name: inputs.name,
                 phone_number: inputs.phone_number,
@@ -70,6 +70,7 @@ const Form = () => {
               },
             });
           }
+          setInputs({ name: "", email: "", phone_number: "" });
         } else {
           console.log(inputs.name.length);
           console.log(inputs.phone_number.length);
@@ -107,7 +108,7 @@ const Form = () => {
         className="text-sm px-4 py-1 bg-green-600 rounded-md text-white md:px-6 md:py-1.5 md:text-base  "
         type="submit"
       >
-        Add Contact
+        {state.editFieldId !== "" ? "Edit" : "Add"} Contact
       </button>
     </form>
   );

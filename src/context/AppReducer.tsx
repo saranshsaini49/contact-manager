@@ -5,14 +5,14 @@ const initialState: AppState = {
   contacts: [
     {
       id: "1",
-      email: "abc@gmail.com",
-      phone_number: "987654321",
+      email: "abc12@gmail.com",
+      phone_number: "9876754321",
       name: "Pappu",
     },
     {
       id: "2",
-      email: "eghjeg@gmail.com",
-      phone_number: "123456678",
+      email: "eghjeg12@gmail.com",
+      phone_number: "1234566678",
       name: "bunny mechanic",
     },
   ],
@@ -36,6 +36,20 @@ const reducer: Reducer<AppState, ActionType> = (initialState, action) => {
     }
     case "Set_Edit_Field_Id": {
       return { ...initialState, editFieldId: action.payload };
+    }
+    case "Edit_Contact": {
+      return {
+        ...initialState,
+        contacts: initialState.contacts.map((contact) => {
+          if (contact.id === initialState.editFieldId) {
+            const { email, name, phone_number } = action.payload;
+            return { ...contact, email, phone_number, name };
+          } else {
+            return { ...contact };
+          }
+        }),
+        editFieldId: "",
+      };
     }
     default: {
       return { ...initialState };
