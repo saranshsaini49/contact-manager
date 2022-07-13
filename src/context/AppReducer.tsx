@@ -2,20 +2,7 @@ import { Reducer, useReducer } from "react";
 import { ActionType, AppState } from "../types";
 
 const initialState: AppState = {
-  contacts: [
-    {
-      id: "1",
-      email: "abc12@gmail.com",
-      phone_number: "9876754321",
-      name: "Pappu",
-    },
-    {
-      id: "2",
-      email: "eghjeg12@gmail.com",
-      phone_number: "1234566678",
-      name: "bunny mechanic",
-    },
-  ],
+  contacts: [],
   editFieldId: "",
 };
 const reducer: Reducer<AppState, ActionType> = (initialState, action) => {
